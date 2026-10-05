@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE JOYERÍA | Diamantes Eternos</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET Y VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --verde-oscuro: #0b2b1e;
+            --verde-medio: #1e4d2b;
+            --verde-claro: #2e7d4e;
+            --verde-brillante: #3ca86b;
+            --dorado: #d4af37;
+            --dorado-claro: #f5e6a3;
+            --blanco: #ffffff;
+            --negro: #0a0a0a;
+            --sombra: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --transicion: all 0.4s ease;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--verde-oscuro);
+            color: var(--blanco);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* ===== HEADER / NAVEGACIÓN ===== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 43, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            transition: var(--transicion);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dorado);
+            letter-spacing: 3px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--blanco);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transicion);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dorado);
+            transition: var(--transicion);
+        }
+
+        .nav-links a:hover {
+            color: var(--dorado);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--dorado);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* ===== SLIDER PRINCIPAL ===== */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        /* Fondos verdes con diferentes tonos */
+        .slide:nth-child(1) {
+            background: linear-gradient(135deg, #0b2b1e 0%, #1e4d2b 50%, #0b2b1e 100%);
+        }
+
+        .slide:nth-child(2) {
+            background: linear-gradient(135deg, #0d3320 0%, #2e7d4e 50%, #0d3320 100%);
+        }
+
+        .slide:nth-child(3) {
+            background: linear-gradient(135deg, #0a2418 0%, #1e4d2b 40%, #0a2418 100%);
+        }
+
+        .slide-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1300px;
+            width: 90%;
+            padding: 0 20px;
+            gap: 50px;
+        }
+
+        .slide-text {
+            flex: 1;
+            color: var(--blanco);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .slide-text h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--blanco);
+        }
+
+        .slide-text h1 .highlight {
+            color: var(--dorado);
+            display: block;
+        }
+
+        .slide-text p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            max-width: 500px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--dorado);
+            border: 2px solid var(--dorado);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: var(--transicion);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--dorado);
+            transition: var(--transicion);
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: var(--verde-oscuro);
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .slide-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1s ease forwards;
+        }
+
+        /* Diamante hecho con CSS */
+        .diamond-wrapper {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .diamond {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(212, 175, 55, 0.6), rgba(255, 255, 255, 0.7));
+            transform: rotate(45deg);
+            position: relative;
+            box-shadow: 
+                0 0 40px rgba(212, 175, 55, 0.6),
+                0 0 80px rgba(212, 175, 55, 0.3),
+                inset 0 0 40px rgba(255, 255, 255, 0.5);
+            animation: brillar 3s ease-in-out infinite;
+        }
+
+        .diamond::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 30%;
+            height: 30%;
+            background: rgba(255, 255, 255, 0.9);
+            filter: blur(5px);
+            border-radius: 50%;
+        }
+
+        .diamond::after {
+            content: '';
+            position: absolute;
+            bottom: 15%;
+            right: 15%;
+            width: 15%;
+            height: 15%;
+            background: rgba(255, 255, 255, 0.7);
+            filter: blur(3px);
+            border-radius: 50%;
+        }
+
+        /* Reflejos del diamante */
+        .diamond-reflection {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transform: rotate(45deg);
+            animation: rotarReflejo 8s linear infinite;
+        }
+
+        .diamond-reflection:nth-child(2) {
+            width: 280px;
+            height: 280px;
+            border-color: rgba(212, 175, 55, 0.15);
+            animation-duration: 12s;
+            animation-direction: reverse;
+        }
+
+        .diamond-reflection:nth-child(3) {
+            width: 310px;
+            height: 310px;
+            border-color: rgba(212, 175, 55, 0.08);
+            animation-duration: 16s;
+        }
+
+        /* Partículas brillantes */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--dorado-claro);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--dorado), 0 0 20px var(--dorado);
+            animation: centellear 2s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 10%; left: 30%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 20%; right: 25%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { bottom: 15%; right: 30%; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { top: 50%; left: 5%; animation-delay: 0.8s; }
+        .sparkle:nth-child(6) { top: 45%; right: 8%; animation-delay: 1.2s; }
+
+        /* Controles del slider */
+        .slider-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--dorado);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transicion);
+        }
+
+        .dot.active {
+            background: var(--dorado);
+            transform: scale(1.3);
+        }
+
+        .dot:hover {
+            background: rgba(212, 175, 55, 0.5);
+        }
+
+        /* Flechas del slider */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            background: rgba(11, 43, 30, 0.5);
+            color: var(--dorado);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transicion);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .arrow:hover {
+            background: var(--dorado);
+            color: var(--verde-oscuro);
+            border-color: var(--dorado);
+        }
+
+        .arrow-left {
+            left: 30px;
+        }
+
+        .arrow-right {
+            right: 30px;
+        }
+
+        /* ===== SECCIÓN DE COLECCIONES ===== */
+        .collections {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, var(--verde-oscuro) 0%, #0d3320 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--blanco);
+            margin-bottom: 15px;
+        }
+
+        .section-title h2 span {
+            color: var(--dorado);
+        }
+
+        .section-title .line {
+            width: 80px;
+            height: 2px;
+            background: var(--dorado);
+            margin: 0 auto;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .collection-card {
+            background: rgba(30, 77, 43, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transicion);
+            position: relative;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--dorado);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-image {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e4d2b, #0b2b1e);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-diamond {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(212, 175, 55, 0.5));
+            transform: rotate(45deg);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            transition: var(--transicion);
+        }
+
+        .collection-card:hover .card-diamond {
+            transform: rotate(45deg) scale(1.1);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.8);
+        }
+
+        .card-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .card-info h3 {
+            font-size: 1.5rem;
+            color: var(--dorado);
+            margin-bottom: 10px;
+        }
+
+        .card-info p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .card-info .price {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: var(--dorado-claro);
+            font-weight: 500;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #071a12;
+            padding: 60px 5% 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--dorado);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .footer-col p, .footer-col a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+            transition: var(--transicion);
+        }
+
+        .footer-col a:hover {
+            color: var(--dorado);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dorado);
+            transition: var(--transicion);
+        }
+
+        .social-icons a:hover {
+            background: var(--dorado);
+            color: var(--verde-oscuro);
+            border-color: var(--dorado);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+
+        /* ===== ANIMACIONES ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes brillar {
+            0%, 100% {
+                box-shadow: 
+                    0 0 40px rgba(212, 175, 55, 0.6),
+                    0 0 80px rgba(212, 175, 55, 0.3),
+                    inset 0 0 40px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                box-shadow: 
+                    0 0 60px rgba(212, 175, 55, 0.9),
+                    0 0 120px rgba(212, 175, 55, 0.5),
+                    inset 0 0 60px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        @keyframes rotarReflejo {
+            from {
+                transform: rotate(45deg);
+            }
+            to {
+                transform: rotate(405deg);
+            }
+        }
+
+        @keyframes centellear {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.3);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .slide-text h1 {
+                font-size: 3.5rem;
+            }
+            .diamond-wrapper {
+                width: 280px;
+                height: 280px;
+            }
+            .diamond {
+                width: 160px;
+                height: 160px;
+            }
+            .diamond-reflection {
+                width: 200px;
+                height: 200px;
+            }
+            .diamond-reflection:nth-child(2) {
+                width: 230px;
+                height: 230px;
+            }
+            .diamond-reflection:nth-child(3) {
+                width: 260px;
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(11, 43, 30, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                transition: var(--transicion);
+                border-left: 1px solid rgba(212, 175, 55, 0.2);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .slide-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+                padding-top: 80px;
+            }
+
+            .slide-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .slide-text p {
+                font-size: 1rem;
+                margin: 0 auto 30px;
+            }
+
+            .slide-image {
+                order: -1;
+            }
+
+            .diamond-wrapper {
+                width: 220px;
+                height: 220px;
+            }
+
+            .diamond {
+                width: 120px;
+                height: 120px;
+            }
+
+            .diamond-reflection {
+                width: 160px;
+                height: 160px;
+            }
+
+            .diamond-reflection:nth-child(2) {
+                width: 180px;
+                height: 180px;
+            }
+
+            .diamond-reflection:nth-child(3) {
+                width: 200px;
+                height: 200px;
+            }
+
+            .arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .arrow-left {
+                left: 15px;
+            }
+
+            .arrow-right {
+                right: 15px;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .slide-text p {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 12px 28px;
+                font-size: 0.8rem;
+            }
+
+            .diamond-wrapper {
+                width: 180px;
+                height: 180px;
+            }
+
+            .diamond {
+                width: 90px;
+                height: 90px;
+            }
+
+            .diamond-reflection {
+                width: 120px;
+                height: 120px;
+            }
+
+            .diamond-reflection:nth-child(2) {
+                width: 140px;
+                height: 140px;
+            }
+
+            .diamond-reflection:nth-child(3) {
+                width: 160px;
+                height: 160px;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .collections {
+                padding: 60px 5%;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">LUXE <span>JOYERÍA</span></a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#colecciones">Colecciones</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== SLIDER PRINCIPAL ===== -->
+    <section class="slider-container" id="inicio">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h1>Diamantes <span class="highlight">Eternos</span></h1>
+                    <p>Descubre la elegancia atemporal en cada pieza. Diamantes certificados con el brillo que mereces para momentos inolvidables.</p>
+                    <a href="#colecciones" class="btn">Explorar Colección</a>
+                </div>
+                <div class="slide-image">
+                    <div class="diamond-wrapper">
+                        <div class="diamond"></div>
+                        <div class="diamond-reflection"></div>
+                        <div class="diamond-reflection"></div>
+                        <div class="diamond-reflection"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h1>Brillo <span class="highlight">Natural</span></h1>
+                    <p>Piedras seleccionadas a mano, talladas por maestros artesanos para resaltar su pureza y luminosidad excepcional.</p>
+                    <a href="#colecciones" class="btn">Ver Anillos</a>
+                </div>
+                <div class="slide-image">
+                    <div class="diamond-wrapper">
+                        <div class="diamond"></div>
+                        <div class="diamond-reflection"></div>
+                        <div class="diamond-reflection"></div>
+                        <div class="diamond-reflection"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-text">
+                    <h1>Lujo <span class="highlight">Sostenible</span></h1>
+                    <p>Comprometidos con la belleza responsable. Diamantes de origen ético que brillan con conciencia y distinción.</p>
+                    <a href="#colecciones" class="btn">Conocer Más</a>
+                </div>
+                <div class="slide-image">
+                    <div class="diamond-wrapper">
+                        <div class="diamond"></div>
+                        <div class="diamond-reflection"></div>
+                        <div class="diamond-reflection"></div>
+                        <div class="diamond-reflection"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                        <div class="sparkle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <button class="arrow arrow-left" id="prevSlide" aria-label="Anterior">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="arrow arrow-right" id="nextSlide" aria-label="Siguiente">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="slider-controls">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+    </section>
+
+    <!-- ===== COLECCIONES ===== -->
+    <section class="collections" id="colecciones">
+        <div class="section-title">
+            <h2>Nuestras <span>Colecciones</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="collection-grid">
+            <div class="collection-card">
+                <div class="card-image">
+                    <div class="card-diamond"></div>
+                </div>
+                <div class="card-info">
+                    <h3>Anillos Solitarios</h3>
+                    <p>Elegancia pura en un solo diamante central.</p>
+                    <span class="price">Desde $2,500</span>
+                </div>
+            </div>
+            <div class="collection-card">
+                <div class="card-image">
+                    <div class="card-diamond"></div>
+                </div>
+                <div class="card-info">
+                    <h3>Collares de Gala</h3>
+                    <p>Piezas majestuosas para ocasiones especiales.</p>
+                    <span class="price">Desde $4,800</span>
+                </div>
+            </div>
+            <div class="collection-card">
+                <div class="card-image">
+                    <div class="card-diamond"></div>
+                </div>
+                <div class="card-info">
+                    <h3>Aretes Brillantes</h3>
+                    <p>Destellos que enmarcan tu rostro con luz.</p>
+                    <span class="price">Desde $1,900</span>
+                </div>
+            </div>
+            <div class="collection-card">
+                <div class="card-image">
+                    <div class="card-diamond"></div>
+                </div>
+                <div class="card-info">
+                    <h3>Pulseras Eternas</h3>
+                    <p>Un círculo perfecto de diamantes entrelazados.</p>
+                    <span class="price">Desde $3,200</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>LUXE JOYERÍA</h4>
+                <p>Creando momentos eternos desde 1985. Cada diamante cuenta una historia de amor y distinción.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <a href="#inicio">Inicio</a>
+                <a href="#colecciones">Colecciones</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <a href="#">Diseño Personalizado</a>
+                <a href="#">Certificación de Diamantes</a>
+                <a href="#">Reparación y Limpieza</a>
+                <a href="#">Tasación de Joyas</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--dorado); margin-right: 8px;"></i> Av. Principal 123, Ciudad</p>
+                <p><i class="fas fa-phone" style="color: var(--dorado); margin-right: 8px;"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-envelope" style="color: var(--dorado); margin-right: 8px;"></i> info@luxejoyeria.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 LUXE JOYERÍA. Todos los derechos reservados. | Diseño exclusivo con diamantes eternos.</p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== SLIDER =====
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let index = (currentSlide + 1) % slides.length;
+            showSlide(index);
+        }
+
+        function prevSlide() {
+            let index = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(index);
+        }
+
+        // Event listeners
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                showSlide(i);
+                resetInterval();
+            });
+        });
+
+        // Auto-play
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 6000);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        startInterval();
+
+        // Pausar al pasar el mouse
+        const sliderContainer = document.querySelector('.slider-container');
+        sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        sliderContainer.addEventListener('mouseleave', startInterval);
+
+        // ===== MENÚ MÓVIL =====
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // ===== SCROLL SUAVE =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
